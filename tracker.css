@@ -1,0 +1,49 @@
+h1{
+  font-size:50px;
+  text-align:center;
+}
+.iphone-wrapper{
+  border:1px solid black;
+  color:#D2D6D6;
+  padding: 20px;
+}
+
+.fa-times{
+  float:right;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  flex-grow:1;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.button.round p{
+  font-size: 27px;
+}
+
+.five{
+  padding-left: 5px;
+  padding-right: 5px;
+  width:63px;
+  text-align:center;
+}
+
+.fifteen{
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 60px;
+  width:63px;
+  text-align: center;
+  /* padding-left: 5%;
+  padding-right: 5%; */
+}
+
+.button-row{
+  display:flex;
+  justify-content:center;
+}
