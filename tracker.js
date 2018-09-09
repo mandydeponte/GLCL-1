@@ -16,7 +16,7 @@ let minus5 = document.getElementById('minus-5')
     if(totalTime > 0){
       totalTime -= 5;
 		counter.innerHTML = totalTime;
-    }	
+    }
 	});
 // plus 15
 let plus15 = document.getElementById('plus-15');
@@ -35,7 +35,7 @@ minus15.addEventListener('click', () => {
 	}
 }
 
-)	
+)
 };
 
 document.addEventListener('DOMContentLoaded', tracker, false);

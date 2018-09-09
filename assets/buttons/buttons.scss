@@ -16,11 +16,11 @@
   	width:37.5px;
   	border-radius:50%;
 	border: 4px solid $gold;
-	  
-	 
+
+
 	  &.disabled{
 	  	border: 3px solid $secondary;
-      opacity: 0.5; 
+      opacity: 0.5;
 	  	p {
 	  		opacity: 50%;
 	  	}
@@ -29,7 +29,7 @@
 		  background-color: $gold;
 		  p{
 			color: $grey;
-		  } 
+		  }
 	  }
 	  p{
     	vertical-align: middle;
@@ -47,7 +47,7 @@
     width: 300px;
     border-radius: 50px;
     border: 3px solid $secondary;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
 
     p {
       vertical-align: middle;
@@ -78,7 +78,7 @@
       border: 3px solid $white;
       margin-top: 20px;
         p {
-          color: lightgrey;
+          color: $lightgrey;
         }
 
     }
@@ -92,20 +92,20 @@
       background-color: $gold2;
       border: 3px solid $gold2;
         p {
-          color: #717271;
+          color: $grey;
         }
     }
 
     &.hoverLight {
-      background-color: #8D7E53;
+      background-color: $silver2;
         p {
           color: $secondary;
         }
     }
 
     &.click {
-      background-color: #BEA04B;
-      border: 3px solid #BEA04B;
+      background-color: $darkgold;
+      border: 3px solid $darkgold;
     }
 
     &.dark {
@@ -131,17 +131,17 @@
 		}
 			&.white {
 			background-color: $white;
-			p{color: #BCBFC7;}
+			p{color: $lightgrey;}
 			}
 			&.gold {
-			background-color: $gold;	
-			
+			background-color: $gold;
+
 			}
 			&.goldlight {
-				background-color: #F0D77C
+				background-color: $gold2;
 			}
 			&.golddark {
-				background-color: darkgoldenrod;
+				background-color: $darkgold;
 			}
 			&.grey {
 				background-color: $grey;
@@ -149,7 +149,7 @@
 				p{color: $gold}
 			}
 			&.silver{
-				background-color: #8C8155;
+				background-color: $silver2;
 				border: 3px solid $gold;
 				p{color: $gold}
 			}
@@ -170,7 +170,6 @@
 
 
 
-  
+
 
 }
-
