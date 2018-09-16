@@ -23,14 +23,17 @@ document.addEventListener('DOMContentLoaded', fn, false);
 'use strict';
 
 var calendar = function calendar() {
-  var lastDay = function lastDay(year, month) {
-    return new Date(year, month, 0).getDate();
-  };
+
   var firstDay = function firstDay(year, month) {
     return new Date(year, month - 1, 1).getDay();
   };
 
+  var lastDay = function lastDay(year, month) {
+    return new Date(year, month, 0).getDate();
+  };
+
   var daysOfTheWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
   var calendarHead = document.getElementById('calendar-head');
   var populateCalendarHead = function populateCalendarHead() {
     for (var i = 0; i < daysOfTheWeek.length; i++) {
@@ -44,16 +47,23 @@ var calendar = function calendar() {
   var calendarBody = document.getElementById('calendar-body');
   var populateCalendarBody = function populateCalendarBody() {
     var daysInRow = 7;
-    var totalRows = 5;
-    var totalDays = daysInRow * totalRows;
+    var totalRows = 6;
+    // var totalDays = daysInRow * totalRows;
     var currentRows = 0;
+    var currentDaysInMonth = lastDay(2018, 9);
+    var firstDayOfMonth = firstDay(2018, 9);
+    var currentDayOfMonthIndex = 1;
+    var currentCalendarDayIndex = 0;
 
     while (currentRows < totalRows) {
       var calendarRow = document.createElement('div');
       for (var i = 0; i < daysInRow; i++) {
-        console.log('within for loop');
         var day = document.createElement('p');
-        day.innerHTML = i;
+        if (currentCalendarDayIndex >= firstDayOfMonth && currentDayOfMonthIndex <= currentDaysInMonth) {
+          day.innerHTML = currentDayOfMonthIndex;
+          currentDayOfMonthIndex++;
+        }
+        currentCalendarDayIndex++;
         calendarRow.appendChild(day);
       }
       calendarBody.appendChild(calendarRow).className = "calendar-row";
@@ -61,13 +71,54 @@ var calendar = function calendar() {
     }
   };
   populateCalendarBody();
-
-  daysOfTheWeek.length; //7
-  daysOfTheWeek.length; //6
-
 };
 
 document.addEventListener('DOMContentLoaded', calendar, false);
+"use strict";
+
+var calendarHeader = function calendarHeader() {
+  var titleSetter = function titleSetter(newTitle) {
+    title.innerHTML = newTitle;
+  };
+
+  titleSetter('September');
+  var titleArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  console.log(titleArr[0]);
+
+  var titleCarousel = document.getElementById("title-carousel");
+  var node = document.createElement("p");
+  node.id = "left-arrow";
+  node.classList.add("arrow.fas.fa-chevron-left", "calendar-header", "title-carousel");
+  titleCarousel.appendChild(node);
+
+  var rawr = document.createElement("p");
+  rawr.id = "titleIndex";
+  rawr.classList.add("calendar-header", "title-carousel");
+  titleCarousel.appendChild(rawr);
+
+  var hey = document.createElement("p");
+  hey.id = "right-arrow";
+  hey.classList.add("arrow.fas.fa-chevron-right", "calendar-header", "title-carousel");
+  titleCarousel.appendChild(hey);
+
+  var leftArrow = document.getElementById('left-arrow');
+  var rightArrow = document.getElementById('right-arrow');
+  var titleIndex = 8;
+  leftArrow.addEventListener('click', function () {
+    if (titleIndex > 0) {
+      titleIndex--;
+      titleSetter(titleArr[titleIndex]);
+    }
+  });
+  rightArrow.addEventListener('click', function () {
+    if (titleIndex < titleArr.length - 1) {
+      titleIndex++;
+      titleSetter(titleArr[titleIndex]);
+    }
+  });
+};
+
+document.addEventListener('DOMContentLoaded', calendarHeader, false);
 'use strict';
 
 var list = [];
