@@ -206,7 +206,14 @@
   font-family: 'Nunito', sans-serif;
 }
 
-.calendar-header {
+li {
+  text-decoration: none;
+}
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
+.title-carousel {
   display: flex;
   width: 250px;
   background-color: lightgray;
@@ -216,11 +223,4 @@
 
 .arrow {
   cursor: pointer;
-}
-* {
-  font-family: 'Nunito', sans-serif;
-}
-
-li {
-  text-decoration: none;
 }

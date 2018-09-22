@@ -76,35 +76,56 @@ var calendar = function calendar() {
 document.addEventListener('DOMContentLoaded', calendar, false);
 'use strict';
 
-var calendarHeader = function calendarHeader() {
-  var month = document.getElementById('month');
-  var monthSetter = function monthSetter(newMonth) {
-    month.innerHTML = newMonth;
-  };
-  monthSetter('September');
-  var monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  console.log(monthArr[0]);
-  var leftArrow = document.getElementById('left-arrow');
-  var rightArrow = document.getElementById('right-arrow');
-  var monthIndex = 8;
-  leftArrow.addEventListener('click', function () {
-    if (monthIndex > 0) {
-      monthIndex--;
-      monthSetter(monthArr[monthIndex]);
-    }
-  });
-  rightArrow.addEventListener('click', function () {
-    if (monthIndex < monthArr.length - 1) {
-      monthIndex++;
-      monthSetter(monthArr[monthIndex]);
-    }
-  });
-};
-
-document.addEventListener('DOMContentLoaded', calendarHeader, false);
-'use strict';
-
 var list = [];
 var myFunkyFunk = function myFunkyFunk() {
   console.log('the funk');
 };
+'use strict';
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var titleCarouselWrapper = function titleCarouselWrapper() {
+  var titleCarousel = document.getElementById('title-carousel');
+
+  var elementBuilder = function elementBuilder(elementType, elementId, appendTo, classes) {
+    var el = document.createElement(elementType);
+    if (classes) {
+      var _el$classList;
+
+      (_el$classList = el.classList).add.apply(_el$classList, _toConsumableArray(classes));
+    }
+    el.id = elementId;
+    appendTo.appendChild(el);
+  };
+
+  elementBuilder('p', 'left-arrow', titleCarousel, ['arrow', 'fas', 'fa-chevron-left']);
+  elementBuilder('p', 'title', titleCarousel);
+  elementBuilder('p', 'right-arrow', titleCarousel, ['arrow', 'fas', 'fa-chevron-right']);
+
+  var title = document.getElementById('title');
+  var titleSetter = function titleSetter(newTitle) {
+    title.innerHTML = newTitle;
+  };
+
+  var titleArr = JSON.parse(titleCarousel.getAttribute('title-arr'));
+  var leftArrow = document.getElementById('left-arrow');
+  var rightArrow = document.getElementById('right-arrow');
+  var titleIndex = Number(titleCarousel.getAttribute('title-starting-index'));
+
+  titleSetter(titleArr[titleIndex]);
+
+  leftArrow.addEventListener('click', function () {
+    if (titleIndex > 0) {
+      titleIndex--;
+      titleSetter(titleArr[titleIndex]);
+    }
+  });
+  rightArrow.addEventListener('click', function () {
+    if (titleIndex < titleArr.length - 1) {
+      titleIndex++;
+      titleSetter(titleArr[titleIndex]);
+    }
+  });
+};
+
+document.addEventListener('DOMContentLoaded', titleCarouselWrapper, false);
