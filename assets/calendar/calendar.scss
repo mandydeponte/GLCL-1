@@ -1,3 +1,5 @@
+@import '../main';
+
 #calendar-head,
 .calendar-row {
   display: flex;
@@ -9,4 +11,8 @@
   }
   //TODO: Create a class ".grayedOut", which makes text lightgray
   //TODO: Add the lightgray color as a scss variable in the _variables.scss file and call it "fadedText"
+}
+
+.grayedOut {
+  color:$fadedText;
 }

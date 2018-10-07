@@ -26,12 +26,21 @@ let titleCarouselWrapper = () => {
 
   titleSetter(titleArr[titleIndex]);
 
-  leftArrow.addEventListener('click', ()=>{
-    if(titleIndex > 0){
-      titleIndex--;
-      titleSetter(titleArr[titleIndex]);
+  const arrowClick = (direction) => {
+      new CustomEvent('arrowClick', {
+        bubbles: true,
+        detail: { arrowDirection: direction }
+      });
     }
-  });
+
+    leftArrow.addEventListener('click', ()=>{
+      if(titleIndex > 0){
+        titleIndex--;
+        titleSetter(titleArr[titleIndex]);
+      }
+      leftArrow.dispatchEvent(arrowClick('left'));
+    });
+
   rightArrow.addEventListener('click', ()=>{
     if(titleIndex < titleArr.length-1){
       titleIndex++;
