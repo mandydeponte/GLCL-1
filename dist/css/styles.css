@@ -6,6 +6,25 @@
   font-family: 'Nunito', sans-serif;
 }
 
+#calendar-head,
+.calendar-row {
+  display: flex;
+  justify-content: space-around;
+}
+
+#calendar-head p,
+.calendar-row p {
+  width: 100%;
+  text-align: center;
+}
+
+.grayedOut {
+  color: lightgray;
+}
+* {
+  font-family: 'Nunito', sans-serif;
+}
+
 .button {
   height: 40px;
   width: 80px;
@@ -191,25 +210,6 @@
 
 .button.square i.goldcheck {
   color: gold;
-}
-* {
-  font-family: 'Nunito', sans-serif;
-}
-
-#calendar-head,
-.calendar-row {
-  display: flex;
-  justify-content: space-around;
-}
-
-#calendar-head p,
-.calendar-row p {
-  width: 100%;
-  text-align: center;
-}
-
-.grayedOut {
-  color: lightgray;
 }
 * {
   font-family: 'Nunito', sans-serif;

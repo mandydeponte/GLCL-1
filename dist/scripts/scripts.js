@@ -1,27 +1,5 @@
 'use strict';
 
-var fn = function fn() {
-	// adding p tag for minus
-	var minus = document.getElementsByClassName('minus');
-
-	for (var i = 0; i < minus.length; i++) {
-		var e = document.createElement('p');
-		e.innerHTML = '-';
-		minus[i].appendChild(e);
-	}
-
-	//adding p tag for plus
-	var plus = document.getElementsByClassName('plus');
-	for (var i = 0; i < plus.length; i++) {
-		var e = document.createElement('p');
-		e.innerHTML = '+';
-		plus[i].appendChild(e);
-	}
-};
-
-document.addEventListener('DOMContentLoaded', fn, false);
-'use strict';
-
 var calendar = function calendar() {
 
   var firstDay = function firstDay(year, month) {
@@ -32,8 +10,6 @@ var calendar = function calendar() {
     return new Date(year, month, 0).getDate();
   };
 
-  //TODO: Create currentTime, currentDay, currentMonth, currentYear variables based on this stack overflow answer
-  //https://stackoverflow.com/a/6002265/5885911
   // Return today's date and time
   var currentTime = new Date();
 
@@ -46,11 +22,6 @@ var calendar = function calendar() {
   // returns the year (four digits)
   var currentYear = currentTime.getFullYear();
 
-  //Use const rather than let or var, we use const when a variable doesn't get reassigned or updated overtime.
-  //Since these are functions, we don't expect the functions to change so we can make them constants.
-
-
-  //TODO: Create the lastMonth function which takes the arguments, "year", "month", "dayOfWeek"
   var lastMonth = function lastMonth(year, month, dayOfWeek) {
     var previousMonth = month - 1;
     var daysInPreviousMonth = function daysInPreviousMonth(y, p) {
@@ -85,11 +56,12 @@ var calendar = function calendar() {
   populateCalendarHead();
 
   var calendarBody = document.getElementById('calendar-body');
-  var populateCalendarBody = function populateCalendarBody() {
-    var currentDaysInMonth = lastDay(2018, 9);
-    var firstDayOfMonth = firstDay(2018, 9);
+  var populateCalendarBody = function populateCalendarBody(selectedYear, selectedMonth) {
+    calendarBody.innerHTML = "";
+    var currentDaysInMonth = lastDay(selectedYear, selectedMonth);
+    var firstDayOfMonth = firstDay(selectedYear, selectedMonth);
     //TODO: Create lastMonthArr const which is equal to the lastMonth function which
-    var lastMonthArr = lastMonth(currentYear, currentMonth, firstDayOfMonth);
+    var lastMonthArr = lastMonth(selectedYear, selectedMonth, firstDayOfMonth);
     var daysInRow = 7;
     var totalRows = 6;
     var currentRows = 0;
@@ -124,10 +96,48 @@ var calendar = function calendar() {
       currentRows++;
     }
   };
-  populateCalendarBody();
+  populateCalendarBody(currentYear, currentMonth);
+  var calendar = document.getElementById('calendar');
+  var currentMonthIndex = currentMonth.valueOf();
+  var currentYearIndex = currentYear.valueOf();
+  console.log('currentMonthIndex', currentMonthIndex);
+
+  calendar.addEventListener('monthChange', function (event) {
+    var changeDirection = event.detail.changeDirection;
+    if (changeDirection === 'left') {
+      currentMonthIndex = currentMonthIndex - 1;
+      populateCalendarBody(currentYearIndex, currentMonthIndex);
+    } else if (changeDirection === 'right') {
+      currentMonthIndex = currentMonthIndex + 1;
+      populateCalendarBody(currentYearIndex, currentMonthIndex + 1);
+    }
+    console.log('event', event);
+  }, true);
 };
 
 document.addEventListener('DOMContentLoaded', calendar, false);
+'use strict';
+
+var fn = function fn() {
+	// adding p tag for minus
+	var minus = document.getElementsByClassName('minus');
+
+	for (var i = 0; i < minus.length; i++) {
+		var e = document.createElement('p');
+		e.innerHTML = '-';
+		minus[i].appendChild(e);
+	}
+
+	//adding p tag for plus
+	var plus = document.getElementsByClassName('plus');
+	for (var i = 0; i < plus.length; i++) {
+		var e = document.createElement('p');
+		e.innerHTML = '+';
+		plus[i].appendChild(e);
+	}
+};
+
+document.addEventListener('DOMContentLoaded', fn, false);
 'use strict';
 
 var list = [];
@@ -169,7 +179,7 @@ var titleCarouselWrapper = function titleCarouselWrapper() {
   titleSetter(titleArr[titleIndex]);
 
   var arrowClick = function arrowClick(direction) {
-    new CustomEvent('arrowClick', {
+    return new CustomEvent('arrowClick', {
       bubbles: true,
       detail: { arrowDirection: direction }
     });

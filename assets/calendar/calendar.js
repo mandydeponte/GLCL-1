@@ -8,8 +8,6 @@ let calendar = () => {
     return new Date(year, month, 0).getDate();
   }
 
-  //TODO: Create currentTime, currentDay, currentMonth, currentYear variables based on this stack overflow answer
-  //https://stackoverflow.com/a/6002265/5885911
   // Return today's date and time
   const currentTime = new Date();
 
@@ -22,11 +20,6 @@ let calendar = () => {
   // returns the year (four digits)
   const currentYear = currentTime.getFullYear();
 
-  //Use const rather than let or var, we use const when a variable doesn't get reassigned or updated overtime.
-  //Since these are functions, we don't expect the functions to change so we can make them constants.
-
-
-  //TODO: Create the lastMonth function which takes the arguments, "year", "month", "dayOfWeek"
   const lastMonth = (year, month, dayOfWeek) => {
     let previousMonth = month - 1;
     const daysInPreviousMonth = (y, p) => {
@@ -64,11 +57,12 @@ let calendar = () => {
   populateCalendarHead();
 
   const calendarBody = document.getElementById('calendar-body');
-  const populateCalendarBody = () => {
-    const currentDaysInMonth = lastDay(2018, 9);
-    const firstDayOfMonth = firstDay(2018, 9);
+  const populateCalendarBody = (selectedYear, selectedMonth) => {
+calendarBody.innerHTML = "";
+    const currentDaysInMonth = lastDay(selectedYear, selectedMonth);
+    const firstDayOfMonth = firstDay(selectedYear, selectedMonth);
     //TODO: Create lastMonthArr const which is equal to the lastMonth function which
-    const lastMonthArr = lastMonth(currentYear, currentMonth, firstDayOfMonth);
+    const lastMonthArr = lastMonth(selectedYear, selectedMonth, firstDayOfMonth);
     const daysInRow = 7;
     const totalRows = 6;
     let currentRows = 0;
@@ -106,7 +100,23 @@ let calendar = () => {
       currentRows++;
     }
   }
-  populateCalendarBody();
+  populateCalendarBody(currentYear, currentMonth);
+  const calendar = document.getElementById('calendar');
+  let currentMonthIndex = currentMonth.valueOf();
+  let currentYearIndex = currentYear.valueOf();
+  console.log('currentMonthIndex', currentMonthIndex);
+
+  calendar.addEventListener('monthChange', function(event){
+    const changeDirection = event.detail.changeDirection;
+    if(changeDirection === 'left'){
+      currentMonthIndex=currentMonthIndex-1;
+      populateCalendarBody(currentYearIndex, currentMonthIndex);
+    }else if(changeDirection === 'right'){
+      currentMonthIndex=currentMonthIndex+1;
+      populateCalendarBody(currentYearIndex, currentMonthIndex+1);
+    }
+    console.log('event', event);
+  }, true);
 };
 
 document.addEventListener('DOMContentLoaded', calendar, false);

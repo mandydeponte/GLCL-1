@@ -1,0 +1,23 @@
+{
+  "User":{
+    "id": 1,
+    "Name":"Jane",
+    "Goal": 90,
+    "practiceSessions":[
+  {
+   "date": "mm/dd/yyyy",
+   "timePracticed": 90,
+   "goalMet": true
+  },
+  {
+   "date": "mm/dd/yyyy",
+   "timePracticed": 60,
+   "goalMet": false
+  },
+  {
+   "date": "mm/dd/yyyy",
+   "timePracticed": 35,
+   "goalMet": false
+  }
+ ]
+}

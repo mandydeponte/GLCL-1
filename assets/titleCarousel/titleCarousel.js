@@ -27,7 +27,7 @@ let titleCarouselWrapper = () => {
   titleSetter(titleArr[titleIndex]);
 
   const arrowClick = (direction) => {
-      new CustomEvent('arrowClick', {
+      return new CustomEvent('arrowClick', {
         bubbles: true,
         detail: { arrowDirection: direction }
       });
