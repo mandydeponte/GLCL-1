@@ -1,25 +1,8 @@
 {
-  "User":{
+  "user":{
     "id": 1,
-  	"Name":"Jane",
-  	"Goal": 90,
-  	"practiceSessions":[
-  		{
-  			"date": "mm/dd/yyyy",
-  			"timePracticed": 90,
-  			"goalMet": true
-  		},
-  		{
-  			"date": "mm/dd/yyyy",
-  			"timePracticed": 60,
-  			"goalMet": false
-  		},
-  		{
-  			"date": "mm/dd/yyyy",
-  			"timePracticed": 35,
-  			"goalMet": false
-  		}
-  	]
+   "name":"Jane",
+   "goal": 90
   },
-  "galleryImages": ["image1", "image2"]
+  "practiceSessions":[]
 }
